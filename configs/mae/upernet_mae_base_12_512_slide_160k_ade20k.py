@@ -31,9 +31,9 @@ model = dict(
         num_heads=12,
         mlp_ratio=4,
         qkv_bias=True,
-        use_abs_pos_emb=True,  # here different
+        use_abs_pos_emb=False,
         use_rel_pos_bias=True,
-        init_values=1.,
+        init_values=0.1,
         drop_path_rate=0.1,
         out_indices=[3, 5, 7, 11]),
     decode_head=dict(
@@ -47,11 +47,11 @@ model = dict(
 optimizer = dict(
     _delete_=True,
     type='AdamW',
-    lr=1e-4,
+    lr=3e-5,
     betas=(0.9, 0.999),
     weight_decay=0.05,
     constructor='LayerDecayOptimizerConstructor',
-    paramwise_cfg=dict(num_layers=12, layer_decay_rate=0.65))
+    paramwise_cfg=dict(num_layers=12, layer_decay_rate=0.9))
 
 lr_config = dict(
     _delete_=True,
